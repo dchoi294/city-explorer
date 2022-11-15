@@ -1,7 +1,7 @@
 # City-Explorer
 
-**Author**: Don Choi
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Author**: Don Choi  
+**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)  
 
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
@@ -19,16 +19,16 @@
 
 ## Credit and Collaborations
 
-Dylan
+Dylan Cabral and Don Choi
 
+![Lab 6](/public/lab6.png "lab6")
 
+Name of feature: [React Bootstrap](https://react-bootstrap.netlify.app/components/modal/#rb-docs-content), [locationIQ](https://my.locationiq.com/dashboard#accesstoken)
 
-Name of feature: 
+Estimate of time needed to complete: 2 hours
 
-Estimate of time needed to complete: 
+Start time: 14:30
 
-Start time: 
+Finish time: 16:11
 
-Finish time: 
-
-Actual time needed to complete: 
+Actual time needed to complete: 1 hour and 41 minutes
