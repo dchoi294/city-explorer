@@ -17,7 +17,7 @@ React, Javascript, CSS, and axios.
 
 ## Change Log
 
-Name of feature: [React Bootstrap](https://react-bootstrap.netlify.app/components/modal/#rb-docs-content), [locationIQ](https://my.locationiq.com/dashboard#accesstoken)
+Name of feature: [React Bootstrap](https://react-bootstrap.netlify.app/components/modal/#rb-docs-content), [locationIQ](https://my.locationiq.com/dashboard#accesstoken), [Alerts Bootstrap](https://getbootstrap.com/docs/4.0/components/alerts/)
 
 Estimate of time needed to complete: 2 hours
 
