@@ -8,8 +8,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       city: '',
-      cityData: [],
-      cityLocation: {lat:0,lon:0},
+      // cityData: [],
+      cityLocation: {},
       isError: false,
       errorMessage:''
     }
@@ -29,11 +29,11 @@ class App extends React.Component {
 
       this.setState({
         cityLocation: cityInfo.data[0],
-        cityData: cityInfo.data[0],
+        // cityData: cityInfo.data[0],
         isError: false
       })
       console.log(cityInfo.data[0]);
-      console.log(this.state.cityData);
+      // console.log(this.state.cityData);
       console.log(this.state.cityLocation);
     } catch(error){
       this.setState({
@@ -51,6 +51,7 @@ class App extends React.Component {
     let cityShow = <img src={cityMap} alt={this.state.city}/>
     // let cityAbout = this.state.isError===false ? <ul>{this.state.data}</ul> : <></>
     // console.log(cityAbout);
+    let citygrid = <h2>lat: {this.state.cityLocation.lat}, lon: {this.state.cityLocation.lon}</h2>
 
     return(
       <>
@@ -60,6 +61,7 @@ class App extends React.Component {
             <input name="city" type="text" onChange={this.handleSubmitInput}/>
           </label>
           <button type="submit">CITY!!!!</button>
+          <h2>{this.state.city}</h2>
         </form>
         {
           this.state.isError
@@ -67,6 +69,7 @@ class App extends React.Component {
             This is a primary alert—check it out! {this.state.errorMessage}
           </div>
             : <ul>
+              {citygrid}
               {/* {cityAbout}, */}
               {cityShow}
             </ul>
