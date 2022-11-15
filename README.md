@@ -23,9 +23,9 @@ Estimate of time needed to complete: 2 hours
 
 Start time: 14:30
 
-Finish time: 16:11
+Finish time: 19:30
 
-Actual time needed to complete: 1 hour and 41 minutes
+Actual time needed to complete: 4 hours and 1 hour break in between
 
 ## Credit and Collaborations
 
