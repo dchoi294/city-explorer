@@ -23,9 +23,6 @@ class App extends React.Component {
     try{
       event.preventDefault();
 
-      let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`;
-      console.log(url);
-
       let cityInfo = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
 
       console.log(cityInfo.data[0]);
