@@ -42,6 +42,9 @@ class App extends React.Component {
 
 
   render() {
+    let cityMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData}&zoom=8`;
+    let cityShow = <img src={cityMap} alt={this.state.city}/>
+
     return(
       <>
         <h1>City Explorer!!</h1>
@@ -51,6 +54,13 @@ class App extends React.Component {
           </label>
           <button type="submit">CITY!!!!</button>
         </form>
+        {
+          this.state.isError
+            ? <p>{this.state.errorMessage}</p>
+            : <ul>
+              {cityShow}
+            </ul>
+        }
       </>
     );
   }
