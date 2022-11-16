@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Weather from './component/Weather'
 import './App.css';
 
 class App extends React.Component {
@@ -11,7 +12,8 @@ class App extends React.Component {
       // cityData: [],
       cityLocation: {lan:0,lon:0},
       isError: false,
-      errorMessage:''
+      errorMessage:'',
+      weatherData:[]
     }
   };
 
@@ -20,6 +22,26 @@ class App extends React.Component {
       city: event.target.value
     });
   };
+
+  handleWeather = async(event) => {
+    try{
+      let cityWeather = await axios.get(`${process.env.REACT_APP_SERVER}/weather?cityName=$this.state.city}`);
+
+    
+
+      this.setState({
+        weatherData:cityWeather.data,
+        isError: false
+      });
+    } catch(error) {
+      this.setState({
+        isError: true,
+        errorMessage: error +', '+ error.message
+      })
+      console.log('error: ', error)
+      console.log('error.message: ', error.message);
+    }
+  }
 
   handleSubmit = async(event) => {
     try{
@@ -35,6 +57,8 @@ class App extends React.Component {
       console.log(cityInfo.data[0]);
       // console.log(this.state.cityData);
       console.log(this.state.cityLocation);
+
+      this.handleWeather();
     } catch(error){
       this.setState({
         isError: true,
@@ -74,6 +98,11 @@ class App extends React.Component {
               <img src={cityMap} alt={this.state.city + 'map'}/>
             </ul>
         }
+        <div>
+          {
+            <Weather cityName={this.state.city} weatherData={this.state.weatherData}/>
+          }
+        </div>
         
         
       </>
