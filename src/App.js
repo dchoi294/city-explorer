@@ -9,7 +9,7 @@ class App extends React.Component {
     this.state = {
       city: '',
       // cityData: [],
-      cityLocation: {},
+      cityLocation: {lan:0,lon:0},
       isError: false,
       errorMessage:''
     }
@@ -47,8 +47,8 @@ class App extends React.Component {
 
 
   render() {
-    let cityMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityLocation.lat},${this.state.cityLocation.lon}&zoom=8`;
-    let cityShow = <img src={cityMap} alt={this.state.city}/>
+    let cityMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityLocation.lat},${this.state.cityLocation.lon}&zoom=11`;
+    // let cityShow = <img src={cityMap} alt={this.state.city}/>
     // let cityAbout = this.state.isError===false ? <ul>{this.state.data}</ul> : <></>
     // console.log(cityAbout);
     let citygrid = <h2>lat: {this.state.cityLocation.lat}, lon: {this.state.cityLocation.lon}</h2>
@@ -71,7 +71,7 @@ class App extends React.Component {
             : <ul>
               {citygrid}
               {/* {cityAbout}, */}
-              {cityShow}
+              <img src={cityMap} alt={this.state.city + 'map'}/>
             </ul>
         }
         
