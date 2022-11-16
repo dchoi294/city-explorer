@@ -26,17 +26,19 @@ class App extends React.Component {
 
   handleWeather = async(event) => {
     try{
-      let cityWeather = await axios.get(`${process.env.REACT_APP_SERVER}/weather?cityName=$this.state.city}`);
+      let cityWeather = await axios.get(`${process.env.REACT_APP_SERVER}/weather?cityName=${this.state.city}`);
 
     
 
       this.setState({
         weatherData:cityWeather.data,
-        isError: false
+        isError: false,
+        isCity: true
       });
     } catch(error) {
       this.setState({
         isError: true,
+        isCity:false,
         errorMessage: error +', '+ error.message
       })
       console.log('error: ', error)
@@ -54,8 +56,6 @@ class App extends React.Component {
         cityLocation: cityInfo.data[0],
         isError: false
       })
-      console.log(cityInfo.data[0]);
-      console.log(this.state.cityLocation);
 
       this.handleWeather();
     } catch(error){
