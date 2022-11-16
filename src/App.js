@@ -12,6 +12,7 @@ class App extends React.Component {
       // cityData: [],
       cityLocation: {lan:0,lon:0},
       isError: false,
+      isCity: false,
       errorMessage:'',
       weatherData:[]
     }
@@ -51,11 +52,9 @@ class App extends React.Component {
 
       this.setState({
         cityLocation: cityInfo.data[0],
-        // cityData: cityInfo.data[0],
         isError: false
       })
       console.log(cityInfo.data[0]);
-      // console.log(this.state.cityData);
       console.log(this.state.cityLocation);
 
       this.handleWeather();
@@ -71,40 +70,35 @@ class App extends React.Component {
 
 
   render() {
-    let cityMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityLocation.lat},${this.state.cityLocation.lon}&zoom=11`;
-    // let cityShow = <img src={cityMap} alt={this.state.city}/>
-    // let cityAbout = this.state.isError===false ? <ul>{this.state.data}</ul> : <></>
-    // console.log(cityAbout);
+    let mapURL = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityLocation.lat},${this.state.cityLocation.lon}&zoom=11`;
+
     let citygrid = <h2>lat: {this.state.cityLocation.lat}, lon: {this.state.cityLocation.lon}</h2>
+
+    let map = this.state.isCity ? <img className="mapImg" src={mapURL} alt={this.state.city}/> : <></>
 
     return(
       <>
         <h1>City Explorer!!</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
-            <input name="city" type="text" onChange={this.handleSubmitInput}/>
+            <input className="searchBar" name="city" type="text" onChange={this.handleSubmitInput}/>
           </label>
-          <button type="submit">CITY!!!!</button>
-          <h2>{this.state.city}</h2>
+          <button className="submitButton" type="submit">CITY!!!!</button>
         </form>
         {
           this.state.isError
-            ? <div class="alert alert-primary" role="alert">
+            ? <div className="alert alert-primary" role="alert">
             This is a primary alert—check it out! {this.state.errorMessage}
           </div>
-            : <ul>
-              {citygrid}
-              {/* {cityAbout}, */}
-              <img src={cityMap} alt={this.state.city + 'map'}/>
-            </ul>
+            : <></>
         }
-        <div>
           {
+          <div>
+            {map}
+            {citygrid}
             <Weather cityName={this.state.city} weatherData={this.state.weatherData}/>
+          </div>
           }
-        </div>
-        
-        
       </>
     );
   }
