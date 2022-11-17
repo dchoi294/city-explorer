@@ -42,8 +42,6 @@ class App extends React.Component {
         isError: false,
         isCity: true
       })
-
-      this.handleWeather();
     } catch(error){
       this.setState({
         isError: true,
@@ -86,8 +84,8 @@ class App extends React.Component {
             {citygrid}
             <Weather cityName={this.state.city} weatherData={this.state.weatherData}/>
             <Movie
-            movies={this.state.movieData}
             cityName={this.state.city}
+            movies={this.state.movieData}
             />
           </div>
           }
