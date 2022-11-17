@@ -10,10 +10,10 @@ class Weather extends React.Component {
 
     return (
       <>
-      <h2>{this.props.cityName} weathers</h2>
-      <ul>
-        {weathers}
-      </ul>
+        <h2>{this.props.cityName} weathers</h2>
+        <ul>
+          {weathers}
+        </ul>
       </>
     );
   }
