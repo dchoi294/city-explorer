@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Weather from './component/Weather'
+import Movie from './component/Movie';
 import './App.css';
 
 class App extends React.Component {
@@ -13,8 +14,10 @@ class App extends React.Component {
       cityLocation: {lan:0,lon:0},
       isError: false,
       isCity: false,
+      isMovie: false,
       errorMessage:'',
-      weatherData:[]
+      weatherData:[],
+      movieData:[]
     }
   };
 
@@ -24,43 +27,28 @@ class App extends React.Component {
     });
   };
 
-  handleWeather = async(event) => {
-    try{
-      let cityWeather = await axios.get(`${process.env.REACT_APP_SERVER}/weather?cityName=${this.state.city}`);
-
-    
-
-      this.setState({
-        weatherData:cityWeather.data,
-        isError: false,
-        isCity: true
-      });
-    } catch(error) {
-      this.setState({
-        isError: true,
-        isCity:false,
-        errorMessage: error +', '+ error.message
-      })
-      console.log('error: ', error)
-      console.log('error.message: ', error.message);
-    }
-  }
-
   handleSubmit = async(event) => {
     try{
       event.preventDefault();
 
       let cityInfo = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
+      let cityWeather = await axios.get(`${process.env.REACT_APP_SERVER}/weather?searchedLat=${cityInfo.data[0].lat}&searchedLon=${cityInfo.data[0].lon}`);
+      let cityMovie = await axios.get(`${process.env.REACT_APP_SERVER}/movie?searchedCity=${this.state.city}`);
 
       this.setState({
         cityLocation: cityInfo.data[0],
-        isError: false
+        weatherData: cityWeather.data,
+        movieData: cityMovie.data,
+        isError: false,
+        isCity: true
       })
 
       this.handleWeather();
     } catch(error){
       this.setState({
         isError: true,
+        isCity:false,
+        isMovie: false,
         errorMessage: error +', '+ error.message
       })
       console.log('error: ', error)
@@ -97,6 +85,10 @@ class App extends React.Component {
             {map}
             {citygrid}
             <Weather cityName={this.state.city} weatherData={this.state.weatherData}/>
+            <Movie
+            movies={this.state.movieData}
+            cityName={this.state.city}
+            />
           </div>
           }
       </>
