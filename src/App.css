@@ -1,5 +1,23 @@
-.mapImg {
-  
+body{
+  background-color: rgb(255, 254, 192);
+}
+
+header{
+  background-image: linear-gradient(lightblue,rgb(225, 225, 138),rgb(160, 198, 211));
+}
+
+main {
+  background-image: url("https://images.unsplash.com/photo-1614549483407-8541fe41ecb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80");
+  background-size:auto;
+  background-position: center;
+  color:rgb(246, 246, 255);
+}
+
+footer {
+  background-image: linear-gradient(rgb(246, 239, 175),rgb(197, 178, 143),rgb(234, 207, 157));
+  color:rgb(46, 47, 48);
+  font-size: 20px;
+  font-weight: 800;
 }
 
 .searchBar{
@@ -17,4 +35,35 @@
   color:black;
   font-weight: 800;
   font-size: larger;
+}
+
+.submitButton:hover {
+  font-family: cursive;
+  font-size:x-large;
+  color:white;
+  background-color: black;
+}
+
+.submitSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  background-size:auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+}
+
+/* #background {
+  background-size:auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+} */
+
+.positions {
+  position: relative;
 }
