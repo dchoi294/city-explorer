@@ -5,10 +5,10 @@ class Movie extends React.Component {
   render() {
     let oneMovie = [];
     
-    let cityMovies = this.props.movies.map((movie,index) => (
+    let cityMovies = this.props.movie.map((movie,index) => (
       <li key={index}>{movie.title} ({`${movie.year}`})</li>
     ));
-    console.log(cityMovies);
+    
     oneMovie = cityMovies[0];
 
     return(
