@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import Weather from './component/Weather'
+// import Weather from './component/Weather'
+// import Movies from './component/Movies';
+import WeatherDay from './component/WeatherDay';
 import Movie from './component/Movie';
 import './App.css';
 
@@ -17,7 +19,8 @@ class App extends React.Component {
       isMovie: false,
       errorMessage: '',
       weatherData: [],
-      movieData: []
+      movieData: [],
+      singleWeather: [],
     }
   };
 
@@ -34,11 +37,17 @@ class App extends React.Component {
       let cityInfo = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
       let cityWeather = await axios.get(`${process.env.REACT_APP_SERVER}/weather?searchedLat=${cityInfo.data[0].lat}&searchedLon=${cityInfo.data[0].lon}`);
       let cityMovie = await axios.get(`${process.env.REACT_APP_SERVER}/movie?searchedCity=${this.state.city}`);
+      console.log(cityMovie);
+      let day = 1;
+
+      let oneWeather = await axios.get(`${process.env.REACT_APP_SERVER}/weather?searchedLat=${cityInfo.data[0].lat}&searchedLon=${cityInfo.data[0].lon}&days=${day}`);
+      
 
       this.setState({
         cityLocation: cityInfo.data[0],
         weatherData: cityWeather.data,
         movieData: cityMovie.data,
+        singleWeather: oneWeather,
         isError: false,
         isCity: true
       })
@@ -85,13 +94,22 @@ class App extends React.Component {
             <div className="positions">
               {citygrid}
               {map}
-              <Weather
+              {/* <Weather
                 cityName={this.state.city}
-                weatherData={this.state.weatherData} />
-              <Movie
+                weatherData={this.state.weatherData}
+                />
+              <Movies
                 cityName={this.state.city}
                 movies={this.state.movieData}
-              />
+              /> */}
+              <WeatherDay
+                cityName={this.state.city}
+                weatherData={this.state.singleWeather}
+                />
+              <Movie
+                cityName={this.state.city}
+                movie={this.state.movieData}
+                />
             </div>
           }
 
