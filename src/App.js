@@ -37,7 +37,7 @@ class App extends React.Component {
       let cityInfo = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
       let cityWeather = await axios.get(`${process.env.REACT_APP_SERVER}/weather?searchedLat=${cityInfo.data[0].lat}&searchedLon=${cityInfo.data[0].lon}`);
       let cityMovie = await axios.get(`${process.env.REACT_APP_SERVER}/movie?searchedCity=${this.state.city}`);
-      console.log(cityMovie);
+
       let day = 1;
 
       let oneWeather = await axios.get(`${process.env.REACT_APP_SERVER}/weather?searchedLat=${cityInfo.data[0].lat}&searchedLon=${cityInfo.data[0].lon}&days=${day}`);
@@ -104,7 +104,7 @@ class App extends React.Component {
               /> */}
               <WeatherDay
                 cityName={this.state.city}
-                weatherData={this.state.singleWeather}
+                weatherData={this.state.weatherData}
                 />
               <Movie
                 cityName={this.state.city}
