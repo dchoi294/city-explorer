@@ -11,13 +11,13 @@ class App extends React.Component {
     this.state = {
       city: '',
       // cityData: [],
-      cityLocation: {lan:0,lon:0},
+      cityLocation: { lan: 0, lon: 0 },
       isError: false,
       isCity: false,
       isMovie: false,
-      errorMessage:'',
-      weatherData:[],
-      movieData:[]
+      errorMessage: '',
+      weatherData: [],
+      movieData: []
     }
   };
 
@@ -27,8 +27,8 @@ class App extends React.Component {
     });
   };
 
-  handleSubmit = async(event) => {
-    try{
+  handleSubmit = async (event) => {
+    try {
       event.preventDefault();
 
       let cityInfo = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
@@ -42,12 +42,12 @@ class App extends React.Component {
         isError: false,
         isCity: true
       })
-    } catch(error){
+    } catch (error) {
       this.setState({
         isError: true,
-        isCity:false,
+        isCity: false,
         isMovie: false,
-        errorMessage: error +', '+ error.message
+        errorMessage: error + ', ' + error.message
       })
       console.log('error: ', error)
       console.log('error.message: ', error.message);
@@ -60,37 +60,48 @@ class App extends React.Component {
 
     let citygrid = <h2>lat: {this.state.cityLocation.lat}, lon: {this.state.cityLocation.lon}</h2>
 
-    let map = this.state.isCity ? <img className="mapImg" src={mapURL} alt={this.state.city}/> : <></>
+    let map = this.state.isCity ? <img className="mapImg" src={mapURL} alt={this.state.city} /> : <></>
 
-    return(
+    return (
       <>
-        <h1>City Explorer!!</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            <input className="searchBar" name="city" type="text" onChange={this.handleSubmitInput}/>
-          </label>
-          <button className="submitButton" type="submit">CITY!!!!</button>
-        </form>
-        {
-          this.state.isError
-            ? <div className="alert alert-primary" role="alert">
-            This is a primary alert—check it out! {this.state.errorMessage}
-          </div>
-            : <></>
-        }
-          {
+        <header><h1>City Explorer!!</h1></header>
+        <main>
           <div>
-            {map}
-            {citygrid}
-            <Weather 
-            cityName={this.state.city} 
-            weatherData={this.state.weatherData}/>
-            <Movie
-            cityName={this.state.city}
-            movies={this.state.movieData}
-            />
+            <form className="submitSection" onSubmit={this.handleSubmit}>
+              <label>
+                <input className="searchBar" name="city" type="text" onChange={this.handleSubmitInput} />
+              </label>
+              <button className="submitButton" type="submit">CITY!!!!</button>
+            </form>
           </div>
+          {
+            this.state.isError
+              ? <div className="alert alert-primary" role="alert">
+                This is a primary alert—check it out! {this.state.errorMessage}
+              </div>
+              : <></>
           }
+          {
+            <div className="positions">
+              {citygrid}
+              {map}
+              <Weather
+                cityName={this.state.city}
+                weatherData={this.state.weatherData} />
+              <Movie
+                cityName={this.state.city}
+                movies={this.state.movieData}
+              />
+            </div>
+          }
+
+        </main>
+        <footer>
+          <p>
+            Photo by <a href="https://unsplash.com/@fotowei?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Wei Zeng</a> on <a href="https://unsplash.com/s/photos/city-background?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+          </p>
+          &copy; Don Choi, 2022
+        </footer>
       </>
     );
   }
