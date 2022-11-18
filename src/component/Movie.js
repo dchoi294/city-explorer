@@ -2,9 +2,8 @@ import React from 'react';
 
 class Moive extends React.Component {
   render() {
-
     let cityMovies = this.props.movies.map((movie,index) => (
-      cityMovies.push(<li key={index}>{movie.title} ({movie.release_date})</li>)
+      <li key={index}>{movie.title} ({`${movie.year}`})</li>
     ));
 
     // let cityMovies = this.props.movies.map(movie => {
