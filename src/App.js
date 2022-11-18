@@ -82,7 +82,9 @@ class App extends React.Component {
           <div>
             {map}
             {citygrid}
-            <Weather cityName={this.state.city} weatherData={this.state.weatherData}/>
+            <Weather 
+            cityName={this.state.city} 
+            weatherData={this.state.weatherData}/>
             <Movie
             cityName={this.state.city}
             movies={this.state.movieData}
