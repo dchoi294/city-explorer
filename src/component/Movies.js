@@ -1,26 +1,24 @@
 import React from 'react';
 
-class Movie extends React.Component {
-
+class Movies extends React.Component {
   render() {
-    let oneMovie = [];
-    
     let cityMovies = this.props.movies.map((movie,index) => (
       <li key={index}>{movie.title} ({`${movie.year}`})</li>
     ));
-    console.log(cityMovies);
-    oneMovie = cityMovies[0];
 
-    return(
+    // let cityMovies = this.props.movies.map(movie => {
+    //   <li>{movie.title} ({movie.release_date})</li>
+    // })
+
+    return (
       <>
         <h2>{this.props.cityName} movies</h2>
         <ul>
-          {oneMovie}
+          {cityMovies}
         </ul>
       </>
-    )
+    );
   }
-
 }
 
-export default Movie;
+export default Movies;
