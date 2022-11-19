@@ -57,6 +57,10 @@ img {
   opacity: 0.5;
 }
 
+.mapImg {
+  opacity:1;
+}
+
 /* #background {
   background-size:auto;
   background-position: center;
