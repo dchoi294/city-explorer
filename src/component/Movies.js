@@ -1,4 +1,5 @@
 import React from 'react';
+import Movie from './Movie';
 
 class Movies extends React.Component {
   render() {
@@ -16,6 +17,9 @@ class Movies extends React.Component {
         <ul>
           {cityMovies}
         </ul>
+        <Movie
+        
+        />
       </>
     );
   }
