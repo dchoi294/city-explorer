@@ -3,9 +3,14 @@ import Movie from './Movie';
 
 class Movies extends React.Component {
   render() {
-    let cityMovies = this.props.movies.map((movie,index) => (
-      <li key={index}>{movie.title} ({`${movie.year}`})</li>
-    ));
+    let cityMovies = this.props.movies.map((movie, index) => {
+      return (
+      <Movie
+        key={index}
+        movieData={movie}
+      />
+    )
+      });
 
     // let cityMovies = this.props.movies.map(movie => {
     //   <li>{movie.title} ({movie.release_date})</li>
@@ -18,7 +23,7 @@ class Movies extends React.Component {
           {cityMovies}
         </ul>
         <Movie
-        
+
         />
       </>
     );
