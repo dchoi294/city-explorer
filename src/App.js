@@ -102,10 +102,12 @@ class App extends React.Component {
                 cityName={this.state.city}
                 movies={this.state.movieData}
               /> */}
+              {this.state.weatherData.length &&
               <WeatherDay
                 cityName={this.state.city}
                 weatherData={this.state.weatherData}
                 />
+              }
               <Movie
                 cityName={this.state.city}
                 movie={this.state.movieData}

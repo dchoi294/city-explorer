@@ -8,7 +8,7 @@ class WeatherDay extends React.Component {
     return (
       <>
         <ul>
-          {weather.date} will be {weather.description}
+          {weather[0].time} will be {weather[0].forecast}
         </ul>
       </>
     );
